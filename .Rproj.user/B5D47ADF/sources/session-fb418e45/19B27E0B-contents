@@ -1,0 +1,26 @@
+Package: gampls
+Type: Package
+Title: GAM-PLS
+Version: 0.1.2
+Authors@R: person("Pierre", "Roudier", email = "roudierp@landcaresearch.co.nz",
+  role = c("aut", "cre"))
+Description: Implementation of GAM-PLS models based on MGCV. 
+    Includes a way to derive prdiction intervals using simulation from the 
+    posterior distribution of the GAM fitted on the latent variables of a PLS.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports:
+    stats,
+    methods,
+    inlabru,
+    gratia,
+    utils,
+    mgcv,
+    pls
+RoxygenNote: 7.2.3
+Collate: 
+    'formula.R'
+    'lvs.R'
+    'gampls.R'
+    'predict.R'

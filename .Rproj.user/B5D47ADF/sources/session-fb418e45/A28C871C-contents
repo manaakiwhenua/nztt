@@ -1,0 +1,22 @@
+Package: nztt
+Type: Package
+Title: Fun with the New Zealand Soil Texture Triangle
+Version: 0.1.1
+Authors@R: c(
+    person("Pierre", "Roudier", email = "roudierp@landcaresearch.co.nz",
+  role = c("aut", "cre")),
+    person("Lauren", "O'Brien", email = "obrienl@landcaresearch.co.nz",
+  role = c("ctb")),
+    person("Kirstin", "Deuss", email = "deussk@landcaresearch.co.nz",
+  role = c("ctb")))
+Description: Tools to plot the soil texture triangle used in New Zealand, and 
+    to classify texture data into the NZ soil texture classes.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports:
+    sf,
+    Ternary
+Depends: 
+    R (>= 2.10)
+RoxygenNote: 7.2.3

@@ -1,0 +1,27 @@
+{
+    "id": "D2A3FC46",
+    "path": "~/Dropbox/code/R/R-pkgs/nztt/data-raw/DATASET.R",
+    "project_path": "data-raw/DATASET.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1692327698451.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "44,0",
+        "scrollLine": "0",
+        "useRainbowParens": "true"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1692927543,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1692927543395,
+    "read_only": false,
+    "read_only_alternatives": []
+}
