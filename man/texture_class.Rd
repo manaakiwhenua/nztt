@@ -4,7 +4,7 @@
 \alias{texture_class}
 \title{Get Texture Class from Texture Data}
 \usage{
-texture_class(clay, sand, silt)
+texture_class(clay, sand, silt, rescale_psd = FALSE)
 }
 \arguments{
 \item{clay}{.}
@@ -12,6 +12,8 @@ texture_class(clay, sand, silt)
 \item{sand}{.}
 
 \item{silt}{.}
+
+\item{rescale_psd}{Does the PSD data needs to be rescaled from [0, 1] to [0, 100]? Defaults to `FALSE`.}
 }
 \value{
 description .

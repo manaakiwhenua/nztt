@@ -43,6 +43,7 @@ tern_to_cart.data.frame <- function(x) {
 #' @param clay .
 #' @param sand .
 #' @param silt .
+#' @param rescale_psd Does the PSD data needs to be rescaled from [0, 1] to [0, 100]? Defaults to `FALSE`.
 #'
 #' @returns description .
 #'
@@ -79,19 +80,20 @@ tern_to_cart.data.frame <- function(x) {
 #'     texture = texture_class(clay = clay, sand = sand, silt = silt)$name
 #'   )
 #'
-texture_class <- function(clay, sand, silt) {
+texture_class <- function(clay, sand, silt, rescale_psd = FALSE) {
 
   if (length(clay) != length(sand) | length(clay) != length(silt) | length(silt) != length(sand)) {
     stop("Make sure that clay, sand, and silt have the same length.",call. = FALSE)
   }
 
-  if (clay[1] <= 1 & sand[1] <= 1 & silt[1] <= 1) {
+  # if (clay[1] <= 1 & sand[1] <= 1 & silt[1] <= 1) {
+  if (rescale_psd) {
 
     clay <- clay * 100
     sand <- sand * 100
     silt <- silt * 100
 
-    warning("Rescaling sand, silt, clay data between 0 and 100", call. = FALSE)
+    message("Rescaling sand, silt, clay data between 0 and 100")
   }
 
   # Automatic limitation of PSD data accuracy to get around the issue of points on
