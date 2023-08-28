@@ -82,6 +82,8 @@ tern_to_cart.data.frame <- function(x) {
 #'
 texture_class <- function(clay, sand, silt, rescale_psd = FALSE) {
 
+  browser()
+
   if (length(clay) != length(sand) | length(clay) != length(silt) | length(silt) != length(sand)) {
     stop("Make sure that clay, sand, and silt have the same length.",call. = FALSE)
   }
