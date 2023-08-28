@@ -86,12 +86,20 @@ texture_class <- function(clay, sand, silt) {
   }
 
   if (clay <= 1 & sand <= 1 & silt <= 1) {
+
     clay <- clay * 100
     sand <- sand * 100
     silt <- silt * 100
 
     warning("Rescaling sand, silt, clay data between 0 and 100", call. = FALSE)
   }
+
+  # Automatic limitation of PSD data accuracy to get around the issue of points on
+  # polygon boundaries
+  .nztt.digits <- 1
+  clay <- round(clay, digits = .nztt.digits)
+  sand <- round(sand, digits = .nztt.digits)
+  silt <- round(silt, digits = .nztt.digits)
 
   t_df <- data.frame(clay = clay, sand = sand, silt = silt)
 
