@@ -50,7 +50,7 @@ tern_to_cart.data.frame <- function(x) {
 #' @author Pierre Roudier
 #'
 #' @importFrom Ternary TernaryToXY
-#' @importFrom sf st_intersection st_drop_geometry
+#' @importFrom sf st_intersection st_drop_geometry st_nearest_feature
 #'
 #' @examples
 #'
@@ -114,8 +114,11 @@ texture_class <- function(clay, sand, silt, rescale_psd = FALSE) {
   # compute intersection with the texture triangle in cartesian space
   res_sf <- suppressWarnings(st_intersection(t_sf, .nztt_sf))
 
-  # Handle border cases (more than one result of the intersection)
-
+  # If the point somehow falls between the two polygons, we affect it to
+  # the closest one
+  if (nrow(res_sf) == 0) {
+    res_sf <- st_nearest_feature(t_sf, .nztt_sf)
+  }
 
   # Re-arrange based on initial row orders
   res_sf <- res_sf[order(res_sf$.id),]
