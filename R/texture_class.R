@@ -85,6 +85,14 @@ texture_class <- function(clay, sand, silt) {
     stop("Make sure that clay, sand, and silt have the same length.",call. = FALSE)
   }
 
+  if (clay <= 1 & sand <= 1 & silt <= 1) {
+    clay <- clay * 100
+    sand <- sand * 100
+    silt <- silt * 100
+
+    warning("Rescaling sand, silt, clay data between 0 and 100", call. = FALSE)
+  }
+
   t_df <- data.frame(clay = clay, sand = sand, silt = silt)
 
   # Get Cartesian coordinates of the texture data
