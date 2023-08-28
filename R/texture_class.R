@@ -69,6 +69,16 @@ tern_to_cart.data.frame <- function(x) {
 #' # Check the results
 #' cbind(tx$name, wairau$name)
 #'
+#' # Example using the tidyverse verbs
+#'
+#' library(dplyr)
+#' data(wairau)
+#' wairau %>%
+#'   select(id, clay, sand, silt) %>%
+#'   mutate(
+#'     texture = texture_class(clay = clay, sand = sand, silt = silt)$name
+#'   )
+#'
 texture_class <- function(clay, sand, silt) {
 
   if (length(clay) != length(sand) | length(clay) != length(silt) | length(silt) != length(sand)) {

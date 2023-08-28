@@ -34,6 +34,16 @@ print(tx)
 # Check the results
 cbind(tx$name, wairau$name)
 
+# Example using the tidyverse verbs
+
+library(dplyr)
+data(wairau)
+wairau \%>\%
+  select(id, clay, sand, silt) \%>\%
+  mutate(
+    texture = texture_class(clay = clay, sand = sand, silt = silt)$name
+  )
+
 }
 \author{
 Pierre Roudier
