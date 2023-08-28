@@ -23,6 +23,17 @@ texture_class
 
 texture_class(clay = 40, silt = 14, sand = 46)
 
+
+# Load example data
+data(wairau)
+
+# Calculate texture classes
+tx <- texture_class(clay = wairau$clay, sand = wairau$sand, silt = wairau$silt)
+print(tx)
+
+# Check the results
+cbind(tx$name, wairau$name)
+
 }
 \author{
 Pierre Roudier

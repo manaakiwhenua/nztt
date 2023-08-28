@@ -1,7 +1,7 @@
 # Example Wairau data
 wairau <- read.csv('./data-raw/wairau.csv')
 
-usethis::use_data(nztt, overwrite = TRUE)
+usethis::use_data(wairau, overwrite = TRUE)
 
 # User-exposed NZ soil texture triangle data
 

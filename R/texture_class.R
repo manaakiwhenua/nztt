@@ -57,6 +57,18 @@ tern_to_cart.data.frame <- function(x) {
 #'
 #' @export
 #'
+#' @examples
+#'
+#' # Load example data
+#' data(wairau)
+#'
+#' # Calculate texture classes
+#' tx <- texture_class(clay = wairau$clay, sand = wairau$sand, silt = wairau$silt)
+#' print(tx)
+#'
+#' # Check the results
+#' cbind(tx$name, wairau$name)
+#'
 texture_class <- function(clay, sand, silt) {
 
   if (length(clay) != length(sand) | length(clay) != length(silt) | length(silt) != length(sand)) {
