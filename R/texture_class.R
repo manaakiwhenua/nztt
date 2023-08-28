@@ -85,7 +85,7 @@ texture_class <- function(clay, sand, silt) {
     stop("Make sure that clay, sand, and silt have the same length.",call. = FALSE)
   }
 
-  if (clay <= 1 & sand <= 1 & silt <= 1) {
+  if (clay[1] <= 1 & sand[1] <= 1 & silt[1] <= 1) {
 
     clay <- clay * 100
     sand <- sand * 100
