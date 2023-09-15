@@ -1,3 +1,14 @@
+#' Colour Palette for the New Zealand Soil Texture Triangle
+#'
+#' Colour palette for the New Zealand Soil Texture Classification Data
+#'
+#' @format `palette_nztt`
+#' A vector of 11 hexadecimnal colours.
+#'
+#' @author Pierre Roudier, Lauren O'Brien
+"palette_nztt"
+
+
 #' New Zealand Soil Texture Triangle
 #'
 #' New Zealand Soil Texture Classification Data
