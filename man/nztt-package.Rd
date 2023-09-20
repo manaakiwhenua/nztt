@@ -4,7 +4,7 @@
 \name{nztt-package}
 \alias{nztt-package}
 \alias{_PACKAGE}
-\title{nztt: Fun with the New Zealand Soil Texture Triangle}
+\title{nztt: Fun with the New Zealand Soil Texture Triangles}
 \description{
 Tools to plot the soil texture triangle used in New Zealand, and to classify texture data into the NZ soil texture classes.
 }

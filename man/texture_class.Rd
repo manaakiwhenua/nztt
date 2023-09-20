@@ -4,7 +4,7 @@
 \alias{texture_class}
 \title{Get Texture Class from Texture Data}
 \usage{
-texture_class(clay, sand, silt, rescale_psd = FALSE)
+texture_class(clay, sand, silt, triangle = "nz", rescale_psd = FALSE)
 }
 \arguments{
 \item{clay}{.}
@@ -12,6 +12,8 @@ texture_class(clay, sand, silt, rescale_psd = FALSE)
 \item{sand}{.}
 
 \item{silt}{.}
+
+\item{triangle}{Which texture triangle to use. Currently implemented are the NZ texture triangle (option "nz", default) or the S-Map texture triangle (option "smap").}
 
 \item{rescale_psd}{Does the PSD data needs to be rescaled from [0, 1] to [0, 100]? Defaults to `FALSE`.}
 }
@@ -24,7 +26,7 @@ texture_class
 \examples{
 
 texture_class(clay = 40, silt = 14, sand = 46)
-
+texture_class(clay = 40, silt = 14, sand = 46, triangle = "smap")
 
 # Load example data
 data(wairau)

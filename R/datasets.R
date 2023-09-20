@@ -1,3 +1,13 @@
+#' Colour Palette for the S-Map Soil Texture Triangle
+#'
+#' Colour palette for the S-Map Soil Texture Classification Data
+#'
+#' @format `palette_nztt`
+#' A vector of 4 hexadecimnal colours.
+#'
+#' @author Pierre Roudier, Lauren O'Brien
+"palette_smap"
+
 #' Colour Palette for the New Zealand Soil Texture Triangle
 #'
 #' Colour palette for the New Zealand Soil Texture Classification Data
@@ -7,7 +17,6 @@
 #'
 #' @author Pierre Roudier, Lauren O'Brien
 "palette_nztt"
-
 
 #' New Zealand Soil Texture Triangle
 #'
@@ -23,6 +32,20 @@
 #' @source Milne, J. D. G., B. Clayden, P. L. Singleton, and A. D. Wilson. 1995. Soil Description Handbook. Revised. Lincoln, N.Z.: Manaaki Whenua Press.
 #' @author Lauren O'Brien
 "nztt"
+
+#' S-Map Soil Texture Triangle
+#'
+#' S-Map Soil Texture Classification Data
+#'
+#' @format `smaptt`
+#' A data frame with 15 rows and 5 columns:
+#' \describe{
+#'   \item{clay, sand, silt}{Percentages for clay, sand, and silt}
+#'   \item{name}{Name of the texture classes}
+#'   \item{code}{Code for the texture classes}
+#' }
+#' @author Pierre Roudier
+"smaptt"
 
 #' Soil Texture Data from the Wairau Valley
 #'

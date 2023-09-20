@@ -43,6 +43,7 @@ tern_to_cart.data.frame <- function(x) {
 #' @param clay .
 #' @param sand .
 #' @param silt .
+#' @param triangle Which texture triangle to use. Currently implemented are the NZ texture triangle (option "nz", default) or the S-Map texture triangle (option "smap").
 #' @param rescale_psd Does the PSD data needs to be rescaled from [0, 1] to [0, 100]? Defaults to `FALSE`.
 #'
 #' @returns description .
@@ -51,14 +52,13 @@ tern_to_cart.data.frame <- function(x) {
 #'
 #' @importFrom Ternary TernaryToXY
 #' @importFrom sf st_intersection st_drop_geometry st_nearest_feature
+#' @include datasets.R
+#' @export
 #'
 #' @examples
 #'
 #' texture_class(clay = 40, silt = 14, sand = 46)
-#'
-#' @export
-#'
-#' @examples
+#' texture_class(clay = 40, silt = 14, sand = 46, triangle = "smap")
 #'
 #' # Load example data
 #' data(wairau)
@@ -80,10 +80,16 @@ tern_to_cart.data.frame <- function(x) {
 #'     texture = texture_class(clay = clay, sand = sand, silt = silt)$name
 #'   )
 #'
-texture_class <- function(clay, sand, silt, rescale_psd = FALSE) {
+texture_class <- function(clay, sand, silt, triangle = "nz", rescale_psd = FALSE) {
 
   if (length(clay) != length(sand) | length(clay) != length(silt) | length(silt) != length(sand)) {
     stop("Make sure that clay, sand, and silt have the same length.",call. = FALSE)
+  }
+
+  # Check if triangle option is one of the 2 available
+  triangle <- tolower(triangle)
+  if (!triangle %in% c("nz", "smap")) {
+    stop("Texture triangle should be one of 'nz' or 'smap'.", call. = FALSE)
   }
 
   # if (clay[1] <= 1 & sand[1] <= 1 & silt[1] <= 1) {
@@ -112,12 +118,18 @@ texture_class <- function(clay, sand, silt, rescale_psd = FALSE) {
   t_sf$.id <- 1:nrow(t_sf)
 
   # compute intersection with the texture triangle in cartesian space
-  res_sf <- suppressWarnings(st_intersection(t_sf, .nztt_sf))
+  if (triangle == "nz") {
+    sf_texture_triangle <- .nztt_sf
+  } else if (triangle == "smap") {
+    sf_texture_triangle <- .smaptt_sf
+  }
+
+  res_sf <- suppressWarnings(st_intersection(t_sf, sf_texture_triangle))
 
   # If the point somehow falls between the two polygons, we affect it to
   # the closest one
   if (nrow(res_sf) == 0) {
-    res_sf <- st_nearest_feature(t_sf, .nztt_sf)
+    res_sf <- st_nearest_feature(t_sf, sf_texture_triangle)
   }
 
   # Re-arrange based on initial row orders

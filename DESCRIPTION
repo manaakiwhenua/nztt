@@ -1,7 +1,7 @@
 Package: nztt
 Type: Package
-Title: Fun with the New Zealand Soil Texture Triangle
-Version: 0.1.7
+Title: Fun with the New Zealand Soil Texture Triangles
+Version: 0.2.0
 Authors@R: c(
     person("Pierre", "Roudier", email = "roudierp@landcaresearch.co.nz",
   role = c("aut", "cre")),
@@ -22,3 +22,7 @@ Suggests:
 Depends: 
     R (>= 2.10)
 RoxygenNote: 7.2.3
+Collate: 
+    'datasets.R'
+    'nztt-package.R'
+    'texture_class.R'

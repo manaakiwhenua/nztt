@@ -46,6 +46,21 @@ names(palette_nztt) <- colours_texture$name
 
 usethis::use_data(palette_nztt, overwrite = TRUE)
 
+colours_texture_smap <- data.frame(
+  rbind(
+    c("Clayey", "#80acdd"),
+    c("Loamey", "#f0e999"),
+    c("Sandy", "#cd9a96"),
+    c("Silty", "#8baa67") # Not in NZTT - should be Silt, but use this colour for Silt Loam
+  )
+)
+names(colours_texture_smap) <- c("name", "colour")
+
+palette_smap <- colours_texture_smap$colour
+names(palette_smap) <- colours_texture_smap$name
+
+usethis::use_data(palette_smap, overwrite = TRUE)
+
 # User-exposed NZ soil texture triangle data
 
 # nztt <- read.csv('./data-raw/nztt.csv')
@@ -56,7 +71,19 @@ nztt <- dplyr::left_join(nztt, colours_texture)
 
 usethis::use_data(nztt, overwrite = TRUE)
 
+# S-Map texture triangle
 
+# User-exposed S-Map soil texture triangle data
+
+smaptt <- read.csv('./data-raw/smaptt_nudge.csv')
+smaptt$X <- NULL
+
+smaptt <- dplyr::left_join(smaptt, colours_texture_smap)
+
+usethis::use_data(smaptt, overwrite = TRUE)
+
+
+## INTERNAL VERSIONS FOR CALCULATIONS
 
 # Internal sf version of NZTT data above
 tt_coords_tern <- as.matrix(nztt[,1:3])
@@ -93,5 +120,40 @@ sf_tt <- plyr::dlply(
 
 .nztt_sf <- unique(.nztt_sf)
 
-usethis::use_data(.nztt_sf, internal = TRUE, overwrite = TRUE)
+# Internal sf version of S-Map data above
+smaptt_coords_tern <- as.matrix(smaptt[,1:3])
+smaptt_coords_cart <- t(apply(smaptt_coords_tern, 1, Ternary::TernaryToXY))
+smaptt_coords_cart <- data.frame(
+  name = smaptt$name,
+  smaptt_coords_cart
+)
 
+sf_smaptt <- plyr::dlply(
+  smaptt_coords_cart,
+  "name",
+  function(x)
+    sf::st_polygon(
+      list(
+        as.matrix(
+          rbind(
+            x[,-1],
+            x[1,-1]
+          )
+        )
+      )
+    )
+)
+
+.smaptt_sf <- sf::st_as_sf(
+  data.frame(
+    name = names(sf_smaptt),
+    geom = sf::st_as_sfc(sf_smaptt)
+  )
+)
+
+.smaptt_sf <- merge(.smaptt_sf, smaptt[, c("name", "code")])
+
+.smaptt_sf <- unique(.smaptt_sf)
+
+# Export to internal dataset
+usethis::use_data(.nztt_sf, .smaptt_sf, internal = TRUE, overwrite = TRUE)
