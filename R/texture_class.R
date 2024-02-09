@@ -36,6 +36,21 @@ tern_to_cart.data.frame <- function(x) {
   return(res)
 }
 
+intersect_pt_with_triangle <- function(pt, tri) {
+  # For each point, process the intersection
+  res_sf <- suppressWarnings(st_intersection(pt, tri))
+
+  # If the point somehow falls between the two polygons, we affect it to
+  # the closest one
+  if (nrow(res_sf) == 0) {
+    idx_closest <- st_nearest_feature(pt, tri)
+    res_sf <- tri[idx_closest,]
+    res_sf$.id <- pt$.id
+  }
+
+  return(res_sf)
+}
+
 #' texture_class
 #'
 #' @title Get Texture Class from Texture Data
@@ -124,13 +139,18 @@ texture_class <- function(clay, sand, silt, triangle = "nz", rescale_psd = FALSE
     sf_texture_triangle <- .smaptt_sf
   }
 
-  res_sf <- suppressWarnings(st_intersection(t_sf, sf_texture_triangle))
+  # For each point, we need to process the intersection with the texture triangle
+  res_sf <- lapply(
+    1:nrow(t_sf),
+    function(i) {
+      res <- intersect_pt_with_triangle(
+        pt = t_sf[i,],
+        tri = sf_texture_triangle
+      )
+    }
+  )
 
-  # If the point somehow falls between the two polygons, we affect it to
-  # the closest one
-  if (nrow(res_sf) == 0) {
-    res_sf <- st_nearest_feature(t_sf, sf_texture_triangle)
-  }
+  res_sf <- do.call(rbind, res_sf)
 
   # Re-arrange based on initial row orders
   res_sf <- res_sf[order(res_sf$.id),]
