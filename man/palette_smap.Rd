@@ -5,7 +5,7 @@
 \alias{palette_smap}
 \title{Colour Palette for the S-Map Soil Texture Triangle}
 \format{
-`palette_nztt`
+`palette_smap`
 A vector of 4 hexadecimnal colours.
 }
 \usage{
