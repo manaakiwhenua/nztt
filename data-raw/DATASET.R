@@ -61,6 +61,32 @@ names(palette_smap) <- colours_texture_smap$name
 
 usethis::use_data(palette_smap, overwrite = TRUE)
 
+colours_nzsc <- data.frame(
+  rbind(
+    c("Allophanic", "#f5a7a0"),
+    c("Anthropic", "#ffd994"),
+    c("Brown", "#c29954"),
+    c("Gley", "#65c1f0"),
+    c("Granular", "#ee816d"),
+    c("Melanic", "#afafaf"),
+    c("Organic", "#6a6e99"),
+    c("Oxidic", "#ff4d73"),
+    c("Pallic", "#009b76"),
+    c("Podzol", "#bd87e5"),
+    c("Pumice", "#89cd66"),
+    c("Raw", "#fffab3"),
+    c("Recent", "#f7dd00"),
+    c("Semiarid", "#ffabc7"),
+    c("Ultic", "#a59b00")
+  )
+)
+names(colours_nzsc) <- c("name", "colour")
+
+palette_nzsc <- colours_nzsc$colour
+names(palette_nzsc) <- colours_nzsc$name
+
+usethis::use_data(palette_nzsc, overwrite = TRUE)
+
 # User-exposed NZ soil texture triangle data
 
 # nztt <- read.csv('./data-raw/nztt.csv')

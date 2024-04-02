@@ -1,7 +1,7 @@
 Package: nztt
 Type: Package
 Title: Fun with the New Zealand Soil Texture Triangles
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: c(
     person("Pierre", "Roudier", email = "roudierp@landcaresearch.co.nz",
   role = c("aut", "cre")),
