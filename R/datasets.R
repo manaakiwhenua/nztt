@@ -2,7 +2,7 @@
 #'
 #' Colour palette for the S-Map Soil Texture Classification Data
 #'
-#' @format `palette_nztt`
+#' @format `palette_smap`
 #' A vector of 4 hexadecimnal colours.
 #'
 #' @author Pierre Roudier, Lauren O'Brien
@@ -17,6 +17,16 @@
 #'
 #' @author Pierre Roudier, Lauren O'Brien
 "palette_nztt"
+
+#' Colour Palette for the New Zealand Soil Classification Orders
+#'
+#' Colour Palette for the New Zealand Soil Classification Orders. Colours were sourced from the S-Map portal.
+#'
+#' @format `palette_nzsc`
+#' A vector of 15 hexadecimnal colours.
+#'
+#' @author Pierre Roudier
+"palette_nzsc"
 
 #' New Zealand Soil Texture Triangle
 #'
